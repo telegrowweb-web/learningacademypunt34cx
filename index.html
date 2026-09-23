@@ -1,264 +1,348 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PRT Punt Learning</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
     body {
-      background: #f0f4ff;
-      color: #111;
-      text-align: center;
+      background: #0b1120;
+      color: #e2e8f0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 0;
     }
 
-    /* ── TOP HEADER ── */
-    .top-header {
-      background: linear-gradient(135deg, #003fad, #0062ff, #3399ff);
-      padding: 10px 20px 6px;
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+      padding: 22px 16px 32px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0,80,255,0.35);
+      border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+      position: relative;
     }
 
-    .top-header .site-name {
-      font-size: clamp(13px, 3vw, 17px);
-      font-weight: 700;
-      color: rgba(255,255,255,0.85);
-      letter-spacing: 3px;
+    .header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+      border-radius: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #93c5fd;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
     }
 
-    /* ── MAIN BANNER ── */
-    .name-banner {
-      background: linear-gradient(135deg, #003fad, #0062ff, #3399ff);
-      padding: 22px 20px 18px;
-      text-align: center;
-    }
-
-    .name-banner h1 {
-      color: #ffffff;
-      font-size: clamp(30px, 9vw, 72px);
+    .header h1 {
+      font-size: clamp(32px, 9vw, 52px);
       font-weight: 900;
+      color: #ffffff;           /* pure white - no highlight */
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 4px;
       line-height: 1.1;
     }
 
-    .name-banner .tagline {
-      color: rgba(255,255,255,0.85);
-      font-size: 13px;
-      letter-spacing: 2px;
-      margin-top: 8px;
-      text-transform: uppercase;
-      font-weight: 600;
+    .tagline {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #94a3b8;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
 
     /* ── MAIN CONTENT ── */
-    main { padding: 0 20px 20px; }
-
-    .timer {
-      font-size: 17px;
-      margin-top: 20px;
-      font-weight: bold;
-      color: #ff6600;
-    }
-
-    /* ── PROFILE / LOGO ── */
-    .profile-wrap {
+    .content {
+      flex: 1;
+      padding: 28px 16px 20px;
       display: flex;
-      justify-content: center;
-      margin: 22px auto 10px;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .profile { position: relative; display: inline-block; }
+    .timer-box {
+      background: rgba(251, 146, 60, 0.12);
+      border: 1px solid rgba(251, 146, 60, 0.3);
+      color: #fdba74;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 50px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timer-box span {
+      background: #f97316;
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Profile */
+    .profile {
+      position: relative;
+      margin-bottom: 24px;
+    }
 
     .profile img {
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      border: 4px solid #0062ff;
-      box-shadow: 0 0 24px rgba(0, 100, 255, 0.4);
-      display: block;
+      border: 4px solid #3b82f6;
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.15),
+                  0 12px 30px rgba(0, 0, 0, 0.4);
       object-fit: cover;
-      background: #000000;
+      background: #000;
     }
 
-    .logo-name-bar {
+    .profile-label {
       position: absolute;
-      bottom: -16px;
+      bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, #003fad, #0062ff);
+      background: #1e40af;
       color: #fff;
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 20px;
+      padding: 6px 18px;
+      border-radius: 30px;
       white-space: nowrap;
-      box-shadow: 0 2px 10px rgba(0,100,255,0.4);
+      box-shadow: 0 4px 15px rgba(30, 64, 175, 0.5);
     }
 
-    h2 { color: #0055dd; margin-top: 30px; font-size: 19px; font-weight: 700; }
+    .stats {
+      text-align: center;
+      margin-bottom: 28px;
+    }
 
-    p { font-size: 15px; margin: 8px 0; }
+    .stats h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 6px;
+    }
 
-    /* ── REGISTER BUTTON ── */
-    .register-btn {
+    .stats p {
+      font-size: 15px;
+      color: #94a3b8;
+    }
+
+    /* WhatsApp Button */
+    .cta-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 15px 40px;
-      background: linear-gradient(45deg, #003fad, #0077ff);
+      width: 100%;
+      max-width: 300px;
+      padding: 17px 24px;
+      background: linear-gradient(90deg, #25D366, #128C7E);
       color: #fff;
-      border: none;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 700;
       font-size: 16px;
-      letter-spacing: 2px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
-      transition: 0.3s;
-      margin-top: 16px;
-      box-shadow: 0 5px 18px rgba(0, 100, 255, 0.45);
+      text-decoration: none;
+      border-radius: 14px;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+      transition: all 0.25s ease;
     }
 
-    .register-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 24px rgba(0, 100, 255, 0.6);
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
     }
 
-    .register-btn svg { width: 20px; height: 20px; fill: none; flex-shrink: 0; }
+    .cta-btn svg {
+      width: 22px;
+      height: 22px;
+    }
 
-    .footer { font-size: 13px; margin-top: 16px; opacity: 0.75; }
+    .motto {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #64748b;
+      font-weight: 500;
+    }
 
-    .credit { text-align: center; font-size: 13px; margin-top: 12px; opacity: 0.75; color: #555; }
-    .credit a { color: #0055dd; text-decoration: none; font-weight: 600; }
+    /* ── FOOTER ── */
+    .footer {
+      padding: 20px 16px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    .credit {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+
+    .credit a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 600;
+    }
 
     .disclaimer {
-      background: #e8eeff;
-      color: #555;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(71, 85, 105, 0.4);
+      color: #94a3b8;
       font-size: 12px;
-      padding: 10px 14px 8px;
-      border-top: 1px solid #ccd6ff;
-      margin-top: 16px;
-      line-height: 1.5;
-      border-radius: 10px 10px 0 0;
+      padding: 14px 16px;
+      border-radius: 12px;
+      line-height: 1.6;
+      margin-bottom: 14px;
     }
 
     .footer-links {
-      font-size: 13px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 0 12px;
-      background: #e8eeff;
-      border-radius: 0 0 10px 10px;
+      gap: 20px;
+      font-size: 13px;
     }
 
-    .footer-links a { color: #0055dd; text-decoration: none; }
-    .footer-links span { color: #0055dd; }
+    .footer-links a {
+      color: #60a5fa;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    @media (max-width: 400px) {
+      .profile img {
+        width: 130px;
+        height: 130px;
+      }
+    }
   </style>
 </head>
-
 <body>
 
-  <!-- Top site label -->
-  <div class="top-header">
-    <div class="site-name">⭐ Official Platform ⭐</div>
-  </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="badge">⭐ Official Platform</div>
+    <h1>PUNT LEARNING</h1>
+    <div class="tagline">Learn Strategies · Trade Smart</div>
+  </header>
 
-  <!-- Main name banner -->
-  <div class="name-banner">
-    <h1> Punt Learning</h1>
-    <div class="tagline">📈 Learn Strategies · Trade Smart 💡</div>
-  </div>
-
-  <main>
-    <div class="timer">
-      Redirecting in <span id="countdown">5</span> seconds...
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <div class="timer-box">
+      Redirecting in <span id="countdown">5</span> seconds
     </div>
 
-    <!-- Profile logo -->
-    <div class="profile-wrap">
-      <div class="profile">
-        <img src="https://i.ibb.co/3tM4qPh/Chat-GPT-Image-Aug-11-2026-06-30-08-PM-1.png" alt="PRT Punt Learning Logo" />
-        <div class="logo-name-bar">PRT Punt Learning</div>
-      </div>
+    <div class="profile">
+      <img src="https://i.ibb.co/3tM4qPh/Chat-GPT-Image-Aug-11-2026-06-30-08-PM-1.png" alt="PRT Punt Learning Logo" />
+      <div class="profile-label">PRT Punt Learning</div>
     </div>
 
-    <h2>Thousands of Subscribers Joined</h2>
-    <p>✅ Learning live opportunities every day</p>
+    <div class="stats">
+      <h2>Thousands of Subscribers Joined</h2>
+      <p>✅ Learning live opportunities every day</p>
+    </div>
 
-    <a href="https://wa.me/447473907496" class="register-btn" id="joinBtn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3s9 4.03 9 9z"/>
+    <a href="https://wa.me/447473907496" class="cta-btn" id="joinBtn">
+      <!-- WhatsApp icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
-      REGISTER NOW
+      WHATSAPP NOW
     </a>
 
-    <p class="footer">💎 Precision. Power. Passion 🌍 — Join Now</p>
+    <p class="motto">💎 Precision. Power. Passion 🌍</p>
   </main>
 
-  <div class="credit">
-    Ads Managed by <a href="https://telegram.me/+TRlJl628l-WE9">@Nexgroww_agency</a>
-  </div>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="credit">
+      Ads Managed by <a href="https://telegram.me/+TRlJl628l-WE9">@Nexgroww_agency</a>
+    </div>
 
-  <section class="disclaimer">
-    <strong>Disclaimer:</strong> All trading and game-related activities involve risk.
-    Provides information for educational and entertainment purposes only.
-    No guaranteed profits. Trade responsibly.
-  </section>
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> All trading and game-related activities involve risk.
+      Provides information for educational and entertainment purposes only.
+      No guaranteed profits. Trade responsibly.
+    </div>
 
-  <div class="footer-links">
-    <a href="https://wa.me/447473907496">Privacy Policy</a>
-    <span>|</span>
-    <a href="https://wa.me/447473907496">Contact Us</a>
-  </div>
+    <div class="footer-links">
+      <a href="https://wa.me/447473907496">Privacy Policy</a>
+      <a href="https://wa.me/447473907496">Contact Us</a>
+    </div>
+  </footer>
 
   <script>
-//document.addEventListener("DOMContentLoaded", function () {
-  //  let countdown = 5;
-    //const joinBtn = document.getElementById("joinBtn");
-    //const countdownEl = document.getElementById("countdown");
-    //if (!joinBtn) return;
-    //const redirectUrl = joinBtn.href;
-    //if (countdownEl) countdownEl.innerText = countdown;
-    //const timer = setInterval(function () {
-      //countdown--;
-      if (countdownEl) countdownEl.innerText = countdown;
-      if (countdown <= 0) { clearInterval(timer); window.location.href = redirectUrl; }
-    //}, 1000);
-  });
+    document.addEventListener("DOMContentLoaded", function () {
+      let countdown = 5;
+      const joinBtn = document.getElementById("joinBtn");
+      const countdownEl = document.getElementById("countdown");
+      if (!joinBtn || !countdownEl) return;
+
+      const redirectUrl = joinBtn.href;
+      countdownEl.innerText = countdown;
+
+      const timer = setInterval(function () {
+        countdown--;
+        countdownEl.innerText = countdown;
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    });
   </script>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1809870843708951');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1809870843708951&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1809870843708951');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1809870843708951&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
 </body>
 </html>
