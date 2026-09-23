@@ -24,22 +24,9 @@
     /* ── HEADER ── */
     .header {
       background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-      padding: 22px 16px 32px;
+      padding: 20px 16px 24px;
       text-align: center;
       border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-      position: relative;
-    }
-
-    .header::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #3b82f6, transparent);
-      border-radius: 10px;
     }
 
     .badge {
@@ -55,20 +42,10 @@
       text-transform: uppercase;
       padding: 6px 16px;
       border-radius: 50px;
-      margin-bottom: 16px;
-    }
-
-    .header h1 {
-      font-size: clamp(32px, 9vw, 52px);
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1.1;
+      margin-bottom: 12px;
     }
 
     .tagline {
-      margin-top: 10px;
       font-size: 14px;
       color: #94a3b8;
       font-weight: 500;
@@ -78,7 +55,7 @@
     /* ── MAIN CONTENT ── */
     .content {
       flex: 1;
-      padding: 28px 16px 20px;
+      padding: 36px 16px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -92,7 +69,7 @@
       font-weight: 600;
       padding: 10px 20px;
       border-radius: 50px;
-      margin-bottom: 32px;
+      margin-bottom: 36px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -111,24 +88,24 @@
       font-size: 14px;
     }
 
-    /* Big Typography instead of Logo */
+    /* Big Typography (only once) */
     .big-typo {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
-    .big-typo h2 {
-      font-size: clamp(36px, 11vw, 58px);
+    .big-typo h1 {
+      font-size: clamp(38px, 11vw, 62px);
       font-weight: 900;
       color: #ffffff;
       letter-spacing: 3px;
       text-transform: uppercase;
       line-height: 1.1;
-      text-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      text-shadow: 0 4px 25px rgba(59, 130, 246, 0.25);
     }
 
     .big-typo .sub {
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 3px;
@@ -138,7 +115,7 @@
 
     .stats {
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .stats h3 {
@@ -185,7 +162,7 @@
     }
 
     .motto {
-      margin-top: 20px;
+      margin-top: 22px;
       font-size: 14px;
       color: #64748b;
       font-weight: 500;
@@ -237,10 +214,9 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (sirf badge + tagline) -->
   <header class="header">
     <div class="badge">⭐ Official Platform</div>
-    <h1>PUNT LEARNING</h1>
     <div class="tagline">Learn Strategies · Trade Smart</div>
   </header>
 
@@ -250,9 +226,9 @@
       Redirecting in <span id="countdown">5</span> seconds
     </div>
 
-    <!-- Big Typography instead of Logo -->
+    <!-- Big Typography (sirf ek baar) -->
     <div class="big-typo">
-      <h2>PUNT LEARNING</h2>
+      <h1>PUNT LEARNING</h1>
       <div class="sub">Official Platform</div>
     </div>
 
